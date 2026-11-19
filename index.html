@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agentic GeoAI | Emergency Intelligence</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-icon">✚</span>
+        <div>
+            <h2>Agentic GeoAI</h2>
+            <small>Emergency Intelligence Platform</small>
+        </div>
+    </div>
+
+    <div class="api-status">
+        <span id="apiIndicator" class="status-dot"></span>
+        <span id="apiStatus">Checking backend...</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <span class="eyebrow">LOCATION-BASED INTELLIGENCE</span>
+        <h1>Find Emergency Facilities Near You</h1>
+        <p>
+            Search nearby hospitals, clinics, ambulance stations
+            and blood banks using location-based OpenStreetMap data.
+        </p>
+    </section>
+
+    <section class="search-card">
+
+        <label for="userQuery">What are you looking for?</label>
+
+        <div class="search-row">
+            <input
+                type="text"
+                id="userQuery"
+                placeholder="Example: blood banks within 5 km"
+            >
+
+            <button id="voiceButton" type="button"
+                    title="Voice search">🎤</button>
+
+            <button id="searchButton" type="button">
+                Search
+            </button>
+        </div>
+
+        <div class="filter-row">
+
+            <div>
+                <label for="facilityFilter">Facility type</label>
+
+                <select id="facilityFilter">
+                    <option value="all">All facilities</option>
+                    <option value="hospital">Hospitals</option>
+                    <option value="clinic">Clinics</option>
+                    <option value="ambulance_station">Ambulance stations</option>
+                    <option value="blood_bank">Blood banks</option>
+                    <option value="healthcare">General healthcare</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="radiusFilter">Search radius</label>
+
+                <select id="radiusFilter">
+                    <option value="2">2 km</option>
+                    <option value="3">3 km</option>
+                    <option value="5" selected>5 km</option>
+                    <option value="10">10 km</option>
+                    <option value="15">15 km</option>
+                    <option value="20">20 km</option>
+                </select>
+            </div>
+
+            <button id="locateButton" type="button">
+                📍 Use my location
+            </button>
+
+        </div>
+
+        <p id="locationStatus" class="small-message">
+            Default location: Pune
+        </p>
+
+        <p id="resultMessage" class="result-message">
+            Search for a facility to see results.
+        </p>
+
+    </section>
+
+    <section class="summary-grid">
+
+        <article class="summary-card">
+            <span>Total results</span>
+            <strong id="hospitalCount">0</strong>
+        </article>
+
+        <article class="summary-card">
+            <span>Selected category</span>
+            <strong id="selectedCategory">All</strong>
+        </article>
+
+        <article class="summary-card">
+            <span>Search radius</span>
+            <strong id="selectedRadius">5 km</strong>
+        </article>
+
+    </section>
+
+    <section class="map-section">
+        <div class="section-heading">
+            <div>
+                <h2>Facility Map</h2>
+                <p>Explore nearby facilities on the map.</p>
+            </div>
+        </div>
+
+        <div id="geoMap"></div>
+
+        <div class="map-legend">
+            <span>🔵 Hospitals</span>
+            <span>🟢 Clinics</span>
+            <span>🟠 Ambulance stations</span>
+            <span>🩸 Blood banks</span>
+            <span>🟣 General healthcare</span>
+        </div>
+    </section>
+
+    <section class="results-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Search Results</h2>
+                <p>Facilities ranked by distance and available details.</p>
+            </div>
+        </div>
+
+        <div id="hospitalList" class="facility-grid">
+            <div class="empty-state">
+                Your search results will appear here.
+            </div>
+        </div>
+
+    </section>
+
+    <section class="workflow-section">
+        <h2>Agent Workflow</h2>
+        <p class="workflow-note">
+            Steps performed for your latest search:
+        </p>
+        <ol id="workflowList">
+            <li>Waiting for search...</li>
+        </ol>
+    </section>
+
+    <section class="disclaimer">
+        <h3>Important Information</h3>
+        <p>
+            This prototype uses OpenStreetMap data. Information may be
+            incomplete or outdated. A listing does not confirm that a
+            facility is open, has beds, has blood stock, or provides
+            emergency services. Contact the facility or appropriate
+            emergency service directly in an emergency.
+            <strong>In India, dial 112 for emergencies.</strong>
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>Agentic GeoAI for Emergency Intelligence | Academic Prototype</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
